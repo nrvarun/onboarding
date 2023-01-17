@@ -13,7 +13,9 @@ export const StyledAuthContainer = styled.div`
 `;
 
 export const StyledAuthContent = styled.div`
-  margin: auto 10rem;
+  margin: auto;
+  width: 100%;
+  max-width: 530px;
 
   h1 {
     color: #000000;
@@ -22,4 +24,15 @@ export const StyledAuthContent = styled.div`
     line-height: 38px;
     margin: 2rem 0 3rem 0;
   }
+
+  p {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    color: #544b4b;
+  }
+`;
+
+export const StyledAuthDesc = styled.p`
+  margin: 0 0 2rem 0;
 `;
