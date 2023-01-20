@@ -7,23 +7,16 @@ import reportWebVitals from "./reportWebVitals";
 
 import { BrowserRouter } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-const theme = createTheme({
-  typography: {
-    fontFamily: "Mulish",
-    button: {
-      textTransform: "capitalize",
-    },
-  },
-});
+import { ThemeProvider } from "@mui/material/styles";
+import { HIKI_THEME } from "Styles/Theme";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={HIKI_THEME}>
       <CssBaseline />
       <BrowserRouter>
         <App />

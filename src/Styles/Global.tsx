@@ -22,13 +22,13 @@ export const StyledFormCTA = styled(Button)`
 `;
 
 export const StyledTermsText = styled.p`
-  font-weight: 600;
   font-size: 16px;
   line-height: 20px;
-  color: #5965a3;
+  color: #888888 !important;
   text-align: right;
 
   span {
+    font-weight: 600;
     color: #3554d1;
     text-decoration: underline;
   }
@@ -38,7 +38,7 @@ export const StyledSignupText = styled.p`
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
-  color: #000000;
+  color: #888888 !important;
   text-align: center;
 
   span {

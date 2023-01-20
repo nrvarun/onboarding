@@ -10,12 +10,15 @@ export const StyledAuthContainer = styled.div`
   flex-direction: row;
   height: 100%;
   width: 100%;
+  max-height: 100vh;
+  overflow: auto;
 `;
 
 export const StyledAuthContent = styled.div`
   margin: auto;
   width: 100%;
   max-width: 530px;
+  padding: 100px 0;
 
   h1 {
     color: #000000;

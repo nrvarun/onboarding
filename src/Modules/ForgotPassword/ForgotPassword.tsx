@@ -10,19 +10,60 @@ import {
   StyledSignupText,
 } from "Styles/Global";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 type Props = {};
 
 const ForgotPassword = (props: Props) => {
   const handleSubmit = (ev: FormEvent) => {
     ev.preventDefault();
-    alert("violaaa");
   };
 
   const [formInput, setFormInput] = useState({
-    email: "",
+    email: {
+      valid: true,
+      value: "",
+    },
   });
+
+  function validateEmail(email: any, errors: any) {
+    let result = true;
+
+    if (!email) {
+      result = false;
+    } else {
+      const re =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      result = re.test(String(email).toLowerCase());
+    }
+    return result;
+  }
+
+  useEffect(() => {
+    if (formInput.email.value !== "") {
+      if (validateEmail(formInput.email.value, {})) {
+        setFormInput((state) => {
+          return {
+            ...state,
+            email: {
+              ...state.email,
+              valid: true,
+            },
+          };
+        });
+      } else {
+        setFormInput((state) => {
+          return {
+            ...state,
+            email: {
+              ...state.email,
+              valid: false,
+            },
+          };
+        });
+      }
+    }
+  }, [formInput.email]);
 
   return (
     <AuthLayout
@@ -41,12 +82,17 @@ const ForgotPassword = (props: Props) => {
             fullWidth
             placeholder="Type email..."
             variant="outlined"
-            value={formInput.email}
+            value={formInput.email.value}
+            error={!formInput.email.valid ? true : false}
+            helperText={formInput.email.valid ? "" : "Invalid email address"}
             onChange={(ev) =>
               setFormInput((state) => {
                 return {
                   ...state,
-                  email: ev.target.value,
+                  email: {
+                    ...state.email,
+                    value: ev.target.value,
+                  },
                 };
               })
             }
