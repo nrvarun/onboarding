@@ -106,7 +106,9 @@ const SignIn = (props: Props) => {
           </Link>
         </StyledForgotPasswordLink>
 
-        <StyledFormCTA type="submit">Login</StyledFormCTA>
+        <StyledFormCTA fullWidth type="submit">
+          Login
+        </StyledFormCTA>
 
         <StyledTermsText>
           By registering, you are agreeing to HiKi{" "}

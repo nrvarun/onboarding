@@ -98,7 +98,9 @@ const ForgotPassword = (props: Props) => {
             }
           />
         </StyledFormField>
-        <StyledFormCTA type="submit">Submit</StyledFormCTA>
+        <StyledFormCTA fullWidth type="submit">
+          Submit
+        </StyledFormCTA>
       </form>
 
       <StyledSignupText>

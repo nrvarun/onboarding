@@ -54,6 +54,7 @@
     "@types/styled-components": "^5.1.26",
     "babel-plugin-import": "^1.13.6",
     "customize-cra": "^1.0.0",
-    "react-app-rewired": "^2.2.1"
+    "react-app-rewired": "^2.2.1",
+    "react-hook-form": "^7.42.1"
   }
 }

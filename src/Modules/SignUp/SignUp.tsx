@@ -229,7 +229,9 @@ const SignUp = (props: Props) => {
           </Grid>
         </Grid>
 
-        <StyledFormCTA type="submit">Register Now</StyledFormCTA>
+        <StyledFormCTA fullWidth type="submit">
+          Register Now
+        </StyledFormCTA>
 
         <StyledTermsText>
           By registering, you are agreeing to HiKi{" "}

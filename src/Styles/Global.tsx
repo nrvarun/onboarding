@@ -1,11 +1,15 @@
 import { Button } from "@mui/material";
 import styled from "styled-components";
 
+type FormCTAType = {
+  fullWidth?: boolean;
+};
+
 export const StyledFormField = styled.div`
   margin: 0 0 2rem 0;
 `;
 
-export const StyledFormCTA = styled(Button)`
+export const StyledFormCTA = styled(Button)<FormCTAType>`
   &,
   &:hover {
     font-weight: 700;
@@ -13,11 +17,30 @@ export const StyledFormCTA = styled(Button)`
     line-height: 20px;
     color: #ffffff;
     background: #0052cc;
-    border-radius: 4px;
-    padding: 16px 18px;
-    width: 100%;
+    border-radius: 8px;
+    padding: 16px 24px;
+    min-width: 132px;
+    width: ${(p) => (p.fullWidth ? "100%" : "auto")};
     border: none;
     cursor: pointer;
+    text-align: center;
+
+    svg {
+      margin: 0 0 0 8px;
+    }
+  }
+`;
+
+export const StyledFormCTAPrev = styled(StyledFormCTA)`
+  &,
+  &:hover {
+    color: #0052cc;
+    background: transparent;
+    border: 1px solid #0052cc;
+
+    svg {
+      margin: 0 8px 0 0;
+    }
   }
 `;
 
