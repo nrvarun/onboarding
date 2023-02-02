@@ -3,11 +3,14 @@ import AppLayout from "Layout/AppLayout";
 import { useState } from "react";
 import Bank from "./Bank";
 import Company from "./Company";
+import Conditions from "./Conditions";
 import Invoice from "./Invoice";
+import LeavePolicy from "./LeavePolicy";
 import {
   StyledUserSetupContent,
   StyledUserSetupWrapper,
 } from "./usersetup.style";
+import WorkHours from "./WorkHours";
 
 type Props = {};
 
@@ -23,7 +26,7 @@ const steps = [
 ];
 
 const UserSetup = (props: Props) => {
-  const [formStep, setFormStep] = useState(2);
+  const [formStep, setFormStep] = useState(5);
 
   const [formValues, setFormValues] = useState({});
 
@@ -41,42 +44,34 @@ const UserSetup = (props: Props) => {
   };
 
   const renderFormStep = (step: Number) => {
+    const actionProps = {
+      activeStep: formStep,
+      nextStep: nextFormStep,
+      prevStep: prevFormStep,
+      updateForm: updateUserForm,
+    };
+
     switch (step) {
       case 0:
-        return (
-          <Company
-            activeStep={formStep}
-            nextStep={nextFormStep}
-            updateForm={updateUserForm}
-          />
-        );
+        return <Company {...actionProps} />;
 
       case 1:
-        return (
-          <Bank
-            activeStep={formStep}
-            nextStep={nextFormStep}
-            updateForm={updateUserForm}
-          />
-        );
+        return <Bank {...actionProps} />;
 
       case 2:
-        return (
-          <Invoice
-            activeStep={formStep}
-            nextStep={nextFormStep}
-            updateForm={updateUserForm}
-          />
-        );
+        return <Invoice {...actionProps} />;
+
+      case 3:
+        return <Conditions {...actionProps} />;
+
+      case 5:
+        return <WorkHours {...actionProps} />;
+
+      case 6:
+        return <LeavePolicy {...actionProps} />;
 
       default:
-        return (
-          <Company
-            activeStep={formStep}
-            nextStep={nextFormStep}
-            updateForm={updateUserForm}
-          />
-        );
+        return <Company {...actionProps} />;
     }
   };
 
@@ -85,7 +80,7 @@ const UserSetup = (props: Props) => {
       <Container>
         <StyledUserSetupWrapper>
           <StyledUserSetupContent>
-            <Stepper alternativeLabel activeStep={0}>
+            <Stepper alternativeLabel activeStep={formStep}>
               {steps.map((label) => (
                 <Step key={label}>
                   <StepLabel>{label}</StepLabel>

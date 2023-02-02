@@ -5,4 +5,8 @@ export const StyledCustomInputLabel = styled.h3`
   font-size: 14px;
   line-height: 18px;
   color: #000000;
+
+  span {
+    color: #eb4747;
+  }
 `;
