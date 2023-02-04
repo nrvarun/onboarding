@@ -5,10 +5,13 @@ import App from "./App";
 
 import reportWebVitals from "./reportWebVitals";
 
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+
 import { BrowserRouter } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { HIKI_THEME } from "Styles/Theme";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,7 +22,9 @@ root.render(
     <ThemeProvider theme={HIKI_THEME}>
       <CssBaseline />
       <BrowserRouter>
-        <App />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <App />
+        </LocalizationProvider>
       </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>

@@ -177,3 +177,40 @@ export const StyledWorkFieldSelectTitle = styled.p`
     color: #eb4747;
   }
 `;
+
+export const StyledHolidayWrapper = styled.div`
+  position: relative;
+`;
+
+export const StyledHolidayList = styled.ul`
+  padding: 0;
+  list-style: none;
+`;
+
+export const StyledHolidayListItem = styled.li`
+  margin: 0 0 24px 0;
+`;
+
+export const StyledSuccessWrapper = styled.section`
+  padding: 16px;
+
+  h3 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 25px;
+    color: #000000;
+  }
+
+  img {
+    width: 56px;
+    height: 56px;
+  }
+
+  p {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1c1c1c;
+    margin: 0 0 24px 0;
+  }
+`;

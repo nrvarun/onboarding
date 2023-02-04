@@ -23,6 +23,6 @@ export const HIKI_THEME = createTheme({
                 //   border: 0
                 },
               },
-        }
+        },
     }
   });

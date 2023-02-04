@@ -4,8 +4,11 @@ import { useState } from "react";
 import Bank from "./Bank";
 import Company from "./Company";
 import Conditions from "./Conditions";
+import Holidays from "./Holidays";
 import Invoice from "./Invoice";
 import LeavePolicy from "./LeavePolicy";
+import SetupSuccess from "./SetupSuccess";
+import Tasks from "./Tasks";
 import {
   StyledUserSetupContent,
   StyledUserSetupWrapper,
@@ -26,7 +29,7 @@ const steps = [
 ];
 
 const UserSetup = (props: Props) => {
-  const [formStep, setFormStep] = useState(5);
+  const [formStep, setFormStep] = useState(8);
 
   const [formValues, setFormValues] = useState({});
 
@@ -64,11 +67,20 @@ const UserSetup = (props: Props) => {
       case 3:
         return <Conditions {...actionProps} />;
 
+      case 4:
+        return <Tasks {...actionProps} />;
+
       case 5:
         return <WorkHours {...actionProps} />;
 
       case 6:
         return <LeavePolicy {...actionProps} />;
+
+      case 7:
+        return <Holidays {...actionProps} />;
+
+      case 8:
+        return <SetupSuccess />;
 
       default:
         return <Company {...actionProps} />;
