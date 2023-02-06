@@ -12,7 +12,7 @@ import {
 } from "../usersetup.style";
 import { useForm, Controller } from "react-hook-form";
 import TopBanner from "../TopBanner";
-import { StyledFormCTA, StyledFormCTAPrev } from "Styles/Global";
+import { StyledFormCTA, StyledFormCTAOutlined } from "Styles/Global";
 import { CheckCircle } from "@mui/icons-material";
 
 export type FormStepProps = {
@@ -120,7 +120,7 @@ const Invoice = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <StyledFormCTAPrev>
+                <StyledFormCTAOutlined>
                   <svg
                     width="24"
                     height="24"
@@ -137,7 +137,7 @@ const Invoice = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                     />
                   </svg>
                   Previous
-                </StyledFormCTAPrev>
+                </StyledFormCTAOutlined>
               </Grid>
               <Grid item xs={6}>
                 <div

@@ -1,13 +1,26 @@
-import { Grid, TextField } from "@mui/material";
-import { StyledCustomInputLabel } from "components/CustomInputLabel/custominputlabel.style";
-
-import { useForm, Controller } from "react-hook-form";
 import {
+  AddAPhotoOutlined,
+  RemoveCircleOutlineRounded,
+} from "@mui/icons-material";
+import { Button, Grid, TextField } from "@mui/material";
+import { StyledCustomInputLabel } from "components/CustomInputLabel/custominputlabel.style";
+import { useState } from "react";
+
+import { useForm, Controller, useFieldArray } from "react-hook-form";
+import { StyledFormCTAOutlined } from "Styles/Global";
+import {
+  StyledBranchList,
+  StyledCompanyLogoUploadAddBtn,
+  StyledCompanyLogoUploadContent,
+  StyledCompanyLogoUploadWrapper,
   StyledFormCTA,
   StyledFormFieldHeading,
   StyledFormFieldItem,
+  StyledUserAvatarImage,
+  StyledUserAvatarWrapper,
   StyledUserSetupFormWrapper,
 } from "../usersetup.style";
+import BranchItem from "./BranchItem";
 
 export type FormStepProps = {
   activeStep: number;
@@ -15,15 +28,39 @@ export type FormStepProps = {
   updateForm: (values: any) => void;
 };
 
+type FormValues = {
+  gstNumber: "";
+  companyName: "";
+  mainBranchName: "";
+  mainBranchAddress: "";
+  branches: {
+    name: "";
+    address: "";
+  }[];
+};
+
 const Company = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
-  const { handleSubmit, control, reset } = useForm({
+  const [selectedImage, setSelectedImage] = useState<any>(null);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormValues>({
     defaultValues: {
       companyName: "",
-      gstNumber: "",
-      mainBranch: "",
+      mainBranchName: "",
       mainBranchAddress: "",
+      gstNumber: "",
+      branches: [{ name: "", address: "" }],
     },
     mode: "all",
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "branches",
   });
 
   const onSubmit = (values: any) => {
@@ -31,12 +68,44 @@ const Company = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
     nextStep();
   };
 
+  const resetImage = () => {
+    setSelectedImage(null);
+  };
+
   return (
     <StyledUserSetupFormWrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container>
+        <Grid container spacing={12}>
           <Grid item xs={4}>
-            image
+            <StyledCompanyLogoUploadWrapper>
+              {selectedImage ? (
+                <StyledUserAvatarWrapper>
+                  <StyledUserAvatarImage>
+                    <img src={selectedImage} alt="user avatar" />
+                  </StyledUserAvatarImage>
+                  <StyledCompanyLogoUploadAddBtn onClick={resetImage}>
+                    <RemoveCircleOutlineRounded />
+                  </StyledCompanyLogoUploadAddBtn>
+                </StyledUserAvatarWrapper>
+              ) : (
+                <StyledCompanyLogoUploadContent>
+                  <img src="/images/upload-logo.png" alt="company logo" />
+                  <StyledCompanyLogoUploadAddBtn>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      name="myImage"
+                      onChange={(event: any) => {
+                        setSelectedImage(
+                          URL.createObjectURL(event.target.files[0])
+                        );
+                      }}
+                    />
+                    <AddAPhotoOutlined />
+                  </StyledCompanyLogoUploadAddBtn>
+                </StyledCompanyLogoUploadContent>
+              )}
+            </StyledCompanyLogoUploadWrapper>
           </Grid>
           <Grid item xs={8}>
             <StyledFormFieldItem>
@@ -47,7 +116,7 @@ const Company = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                 render={({ field, fieldState }) => (
                   <>
                     <StyledCustomInputLabel>
-                      Company Name*
+                      Company Name <span>*</span>
                     </StyledCustomInputLabel>
                     <TextField
                       style={{
@@ -71,7 +140,9 @@ const Company = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                 rules={{ required: true }}
                 render={({ field, fieldState }) => (
                   <>
-                    <StyledCustomInputLabel>GST Number*</StyledCustomInputLabel>
+                    <StyledCustomInputLabel>
+                      GST Number <span>*</span>
+                    </StyledCustomInputLabel>
                     <TextField
                       style={{
                         width: "100%",
@@ -85,16 +156,18 @@ const Company = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                 )}
               />
             </StyledFormFieldItem>
-            <StyledFormFieldHeading>Locations*</StyledFormFieldHeading>
+            <StyledFormFieldHeading>
+              Locations <span>*</span>
+            </StyledFormFieldHeading>
             <StyledFormFieldItem>
               <Controller
-                name="mainBranch"
+                name="mainBranchName"
                 control={control}
                 rules={{ required: true }}
                 render={({ field, fieldState }) => (
                   <>
                     <StyledCustomInputLabel>
-                      Main Branch Name*
+                      Main Branch Name <span>*</span>
                     </StyledCustomInputLabel>
                     <TextField
                       style={{
@@ -132,13 +205,58 @@ const Company = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
               />
             </StyledFormFieldItem>
 
-            <div
-              style={{
-                textAlign: "left",
-              }}
-            >
-              <StyledFormCTA type="submit">Next</StyledFormCTA>
-            </div>
+            <StyledBranchList>
+              {fields.map((field, index) => {
+                return (
+                  <li key={field.id}>
+                    <BranchItem
+                      item={field}
+                      id={index}
+                      onDelete={remove}
+                      control={control}
+                    />
+                  </li>
+                );
+              })}
+              <li>
+                <StyledFormCTAOutlined
+                  minwidth="auto"
+                  fullWidth
+                  type="button"
+                  onClick={() => {
+                    append({
+                      name: "",
+                      address: "",
+                    });
+                  }}
+                >
+                  + Add Branch
+                </StyledFormCTAOutlined>
+              </li>
+            </StyledBranchList>
+
+            <Grid container justifyContent="flex-end">
+              <StyledFormCTA type="submit">
+                Next
+                <span>
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9 6L15 12L9 18"
+                      stroke="white"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </StyledFormCTA>
+            </Grid>
           </Grid>
         </Grid>
       </form>

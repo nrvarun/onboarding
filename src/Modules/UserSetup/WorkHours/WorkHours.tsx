@@ -2,7 +2,7 @@ import { Grid, TextField, Switch, MenuItem } from "@mui/material";
 import CustomInputLabel from "components/CustomInputLabel";
 
 import { useForm, Controller } from "react-hook-form";
-import { StyledFormCTAPrev } from "Styles/Global";
+import { StyledFormCTAOutlined } from "Styles/Global";
 
 import {
   StyledFormCTA,
@@ -250,7 +250,7 @@ const WorkHours = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <StyledFormCTAPrev>
+                <StyledFormCTAOutlined>
                   <svg
                     width="24"
                     height="24"
@@ -267,7 +267,7 @@ const WorkHours = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                     />
                   </svg>
                   Previous
-                </StyledFormCTAPrev>
+                </StyledFormCTAOutlined>
               </Grid>
               <Grid item xs={6}>
                 <div

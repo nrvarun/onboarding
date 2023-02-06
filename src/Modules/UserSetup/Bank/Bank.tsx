@@ -9,7 +9,7 @@ import {
 import { StyledCustomInputLabel } from "components/CustomInputLabel/custominputlabel.style";
 
 import { useForm, Controller } from "react-hook-form";
-import { StyledFormCTA, StyledFormCTAPrev } from "Styles/Global";
+import { StyledFormCTA, StyledFormCTAOutlined } from "Styles/Global";
 import TopBanner from "../TopBanner";
 import {
   StyledFormFieldDivider,
@@ -194,7 +194,7 @@ const Bank = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <StyledFormCTAPrev>
+                <StyledFormCTAOutlined>
                   <svg
                     width="24"
                     height="24"
@@ -211,7 +211,7 @@ const Bank = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                     />
                   </svg>
                   Previous
-                </StyledFormCTAPrev>
+                </StyledFormCTAOutlined>
               </Grid>
               <Grid item xs={6}>
                 <div

@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
-
+import type {} from '@mui/x-date-pickers/themeAugmentation';
   
 export const HIKI_THEME = createTheme({
     typography: {
@@ -10,6 +10,13 @@ export const HIKI_THEME = createTheme({
       },
     },
     components: {
+      MuiDatePicker: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#0052CC',
+          },
+        },
+      },
         MuiInputBase: {
             styleOverrides: {
                 // Name of the slot

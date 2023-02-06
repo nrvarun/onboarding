@@ -1,7 +1,8 @@
 import { Grid } from "@mui/material";
+
 import React from "react";
-import { useForm } from "react-hook-form";
-import { StyledFormCTA, StyledFormCTAPrev } from "Styles/Global";
+import { useFieldArray, useForm } from "react-hook-form";
+import { StyledFormCTA, StyledFormCTAOutlined } from "Styles/Global";
 import {
   StyledFormFieldDivider,
   StyledHolidayList,
@@ -17,29 +18,31 @@ export type FormStepProps = {
   updateForm: (values: any) => void;
 };
 
+type FormValues = {
+  holiday: {
+    date: string;
+    name: string;
+    isMandatory: boolean;
+    isOptional: boolean;
+  }[];
+};
+
 const Holidays = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    reset,
-  } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
-      holiday1Date: "",
-      holiday1Name: "",
-      holiday2Date: "",
-      holiday2Name: "",
+      holiday: [{ date: "", name: "", isMandatory: false, isOptional: false }],
     },
     mode: "all",
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "holiday",
   });
 
   const onSubmit = (values: any) => {
     updateForm(values);
     nextStep();
-  };
-
-  const onDelete = () => {
-    console.log("Deleted");
   };
 
   return (
@@ -49,21 +52,46 @@ const Holidays = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
           <Grid item xs={12}>
             <StyledHolidayWrapper>
               <StyledHolidayList>
-                <StyledHolidayListItem>
-                  <HolidayItem id={1} onDelete={onDelete} control={control} />
-                </StyledHolidayListItem>
-                <StyledHolidayListItem>
-                  <HolidayItem id={2} onDelete={onDelete} control={control} />
-                </StyledHolidayListItem>
+                {/* <StyledHolidayListItem>
+                  <HolidayItem id={1} />
+                </StyledHolidayListItem> */}
+                {fields.map((field, index) => {
+                  return (
+                    <StyledHolidayListItem key={field.id}>
+                      <HolidayItem
+                        item={field}
+                        id={index}
+                        onDelete={remove}
+                        control={control}
+                      />
+                    </StyledHolidayListItem>
+                  );
+                })}
               </StyledHolidayList>
             </StyledHolidayWrapper>
+          </Grid>
+          <Grid item xs={12}>
+            <StyledFormCTAOutlined
+              minwidth="auto"
+              type="button"
+              onClick={() => {
+                append({
+                  date: "",
+                  name: "",
+                  isMandatory: false,
+                  isOptional: false,
+                });
+              }}
+            >
+              + Add
+            </StyledFormCTAOutlined>
           </Grid>
         </Grid>
         <StyledFormFieldDivider />
 
         <Grid container spacing={2}>
           <Grid item xs={6}>
-            <StyledFormCTAPrev>
+            <StyledFormCTAOutlined>
               <svg
                 width="24"
                 height="24"
@@ -80,7 +108,7 @@ const Holidays = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                 />
               </svg>
               Previous
-            </StyledFormCTAPrev>
+            </StyledFormCTAOutlined>
           </Grid>
           <Grid item xs={6}>
             <div

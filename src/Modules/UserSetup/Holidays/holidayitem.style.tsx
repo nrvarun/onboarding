@@ -15,12 +15,3 @@ export const StyledHolidayItemWrapper = styled.article`
     margin: 0 0 20px 0;
   }
 `;
-
-export const StyledHolidayDeleteBtn = styled(Button)`
-  background: rgba(0, 82, 204, 0.1);
-  border: 1px solid #0052cc;
-  border-radius: 4px;
-  padding: 8px;
-  min-width: 32px;
-  margin: 0 0 16px 0;
-`;

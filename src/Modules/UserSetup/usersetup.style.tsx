@@ -29,7 +29,7 @@ export const StyledFormCTA = styled(Button)`
     line-height: 20px;
     color: #ffffff;
     background: #0052cc;
-    border-radius: 4px;
+    border-radius: 8px;
     padding: 16px 18px;
     border: none;
     cursor: pointer;
@@ -213,4 +213,104 @@ export const StyledSuccessWrapper = styled.section`
     color: #1c1c1c;
     margin: 0 0 24px 0;
   }
+`;
+
+export const StyledBranchList = styled.ul`
+  padding: 0;
+  list-style: none;
+  margin: 48px 0 0 0;
+
+  li {
+    margin: 0 0 16px 0;
+
+    &:last-child {
+      margin: 0 0 48px 0;
+    }
+  }
+`;
+
+export const StyledUserSetupDeleteBtn = styled(Button)`
+  background: rgba(0, 82, 204, 0.1);
+  border: 1px solid #0052cc;
+  border-radius: 4px;
+  padding: 8px;
+  min-width: 24px;
+  margin: 8px 0 12px 0;
+`;
+
+export const StyledCompanyLogoUploadWrapper = styled.div`
+  position: relative;
+  border-radius: 50%;
+  max-width: 183px;
+  max-height: 183px;
+  margin: 0 auto;
+`;
+
+export const StyledCompanyLogoUploadItem = styled.div`
+  max-width: 180px;
+`;
+
+export const StyledCompanyLogoUploadContent = styled.div`
+  padding: 70px;
+  background: #f8fcff;
+  opacity: 0.7;
+  border: 0.957265px dashed rgba(136, 136, 136, 0.4);
+  border-radius: 50%;
+  text-align: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+export const StyledCompanyLogoUploadAddBtn = styled(Button)`
+  &,
+  &:hover {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: #0052cc;
+
+    input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+    }
+
+    svg {
+      fill: #ffffff;
+    }
+  }
+`;
+
+export const StyledUserAvatarWrapper = styled.div`
+  position: relative;
+  border-radius: 50%;
+  width: 183px;
+  height: 183px;
+  margin: 0 auto;
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+`;
+
+export const StyledUserAvatarImage = styled.div`
+  overflow: hidden;
 `;

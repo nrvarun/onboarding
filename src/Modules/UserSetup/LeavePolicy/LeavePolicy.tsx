@@ -14,7 +14,7 @@ import {
 import CustomInputLabel from "components/CustomInputLabel";
 
 import { useForm, Controller } from "react-hook-form";
-import { StyledFormCTAPrev } from "Styles/Global";
+import { StyledFormCTAOutlined } from "Styles/Global";
 
 import {
   StyledFormCTA,
@@ -246,7 +246,7 @@ const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <StyledFormCTAPrev>
+                <StyledFormCTAOutlined>
                   <svg
                     width="24"
                     height="24"
@@ -263,7 +263,7 @@ const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                     />
                   </svg>
                   Previous
-                </StyledFormCTAPrev>
+                </StyledFormCTAOutlined>
               </Grid>
               <Grid item xs={6}>
                 <div

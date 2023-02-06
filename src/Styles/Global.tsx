@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 type FormCTAType = {
   fullWidth?: boolean;
+  minwidth?: string;
 };
 
 export const StyledFormField = styled.div`
@@ -19,7 +20,7 @@ export const StyledFormCTA = styled(Button)<FormCTAType>`
     background: #0052cc;
     border-radius: 8px;
     padding: 16px 24px;
-    min-width: 132px;
+    min-width: ${(p) => (p.minwidth ? p.minwidth : "132px")};
     width: ${(p) => (p.fullWidth ? "100%" : "auto")};
     border: none;
     cursor: pointer;
@@ -31,7 +32,7 @@ export const StyledFormCTA = styled(Button)<FormCTAType>`
   }
 `;
 
-export const StyledFormCTAPrev = styled(StyledFormCTA)`
+export const StyledFormCTAOutlined = styled(StyledFormCTA)`
   &,
   &:hover {
     color: #0052cc;

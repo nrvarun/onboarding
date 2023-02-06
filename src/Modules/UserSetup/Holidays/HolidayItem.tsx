@@ -5,35 +5,36 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import CustomInputLabel from "components/CustomInputLabel";
 import { StyledCustomInputLabel } from "components/CustomInputLabel/custominputlabel.style";
 import { Controller } from "react-hook-form";
-import { StyledFormSwitchWrapper } from "../usersetup.style";
-
 import {
-  StyledHolidayDeleteBtn,
-  StyledHolidayItemWrapper,
-} from "./holidayitem.style";
+  StyledFormSwitchWrapper,
+  StyledUserSetupDeleteBtn,
+} from "../usersetup.style";
+
+import { StyledHolidayItemWrapper } from "./holidayitem.style";
 
 type Props = {
-  id: number | string;
-  onDelete: () => void;
-  fieldLabel?: string;
-  control: any;
+  id: number;
+  onDelete?: () => void;
+
+  control?: any;
+  item?: object;
 };
 
-const HolidayItem = ({ id, onDelete, control, fieldLabel }: Props) => {
+const HolidayItem = ({ id, onDelete, control }: Props) => {
   return (
     <StyledHolidayItemWrapper>
       <Grid container spacing={2} alignItems="end">
         <Grid item xs={12}>
-          <h1>{`Holiday - ${id}`}</h1>
+          <h1>{`Holiday - ${id + 1}`}</h1>
         </Grid>
         <Grid item xs={3}>
           <CustomInputLabel text="Day" />
           <Controller
-            name={`holiday${id}Date`}
+            name={`holiday.${id}.day`}
             control={control}
             render={({ field, fieldState }) => (
               <DesktopDatePicker
-                label={fieldLabel || ""}
+                label={""}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -48,7 +49,7 @@ const HolidayItem = ({ id, onDelete, control, fieldLabel }: Props) => {
         </Grid>
         <Grid item xs={3}>
           <Controller
-            name={`holiday${id}Name`}
+            name={`holiday.${id}.name`}
             control={control}
             rules={{ required: true }}
             render={({ field, fieldState }) => (
@@ -99,9 +100,9 @@ const HolidayItem = ({ id, onDelete, control, fieldLabel }: Props) => {
           />
         </Grid>
         <Grid item xs={2} justifyContent="center" alignItems="center">
-          <StyledHolidayDeleteBtn>
+          <StyledUserSetupDeleteBtn onClick={onDelete}>
             <DeleteOutlined />
-          </StyledHolidayDeleteBtn>
+          </StyledUserSetupDeleteBtn>
         </Grid>
       </Grid>
     </StyledHolidayItemWrapper>

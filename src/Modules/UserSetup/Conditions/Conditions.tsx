@@ -2,7 +2,7 @@ import { CheckBox, CheckCircle } from "@mui/icons-material";
 import { Checkbox, FormControlLabel, Grid } from "@mui/material";
 
 import { useForm, Controller } from "react-hook-form";
-import { StyledFormCTAPrev } from "Styles/Global";
+import { StyledFormCTAOutlined } from "Styles/Global";
 import TopBanner from "../TopBanner";
 import {
   StyledFormCTA,
@@ -91,7 +91,7 @@ const Conditions = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <StyledFormCTAPrev>
+                <StyledFormCTAOutlined>
                   <svg
                     width="24"
                     height="24"
@@ -108,7 +108,7 @@ const Conditions = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                     />
                   </svg>
                   Previous
-                </StyledFormCTAPrev>
+                </StyledFormCTAOutlined>
               </Grid>
               <Grid item xs={6}>
                 <div
