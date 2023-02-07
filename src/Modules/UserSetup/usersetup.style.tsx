@@ -1,6 +1,10 @@
 import { Button } from "@mui/material";
 import styled from "styled-components";
 
+interface Props {
+  fullWidth?: boolean;
+}
+
 export const StyledUserSetupWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -17,8 +21,8 @@ export const StyledUserSetupContent = styled.section`
   width: 100%;
 `;
 
-export const StyledUserSetupFormWrapper = styled.div`
-  padding: 60px 100px;
+export const StyledUserSetupFormWrapper = styled.div<Props>`
+  padding: ${(props) => (props.fullWidth ? "60px 20px" : "60px 100px")};
 `;
 
 export const StyledFormCTA = styled(Button)`
