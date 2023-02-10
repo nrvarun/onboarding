@@ -19,6 +19,7 @@ export type FormStepProps = {
   activeStep: number;
   nextStep: () => void;
   updateForm: (values: any) => void;
+  prevStep: () => void;
 };
 
 const Invoice = ({ activeStep, nextStep, updateForm }: FormStepProps) => {

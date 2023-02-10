@@ -1,5 +1,5 @@
 import { AddCircleOutlined, Task } from "@mui/icons-material";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { StyledFormCTA, StyledFormCTAOutlined } from "Styles/Global";
@@ -16,6 +16,7 @@ export type FormStepProps = {
   activeStep: number;
   nextStep: () => void;
   updateForm: (values: any) => void;
+  prevStep: () => void;
 };
 
 const grid = 8;
@@ -41,7 +42,12 @@ const generateTasks = (type: string) => {
   return tasks;
 };
 
-const Tasks = (props: FormStepProps) => {
+const Tasks = ({
+  activeStep,
+  nextStep,
+  prevStep,
+  updateForm,
+}: FormStepProps) => {
   const [mainTasks, setMainTasks] = useState(generateTasks("Main"));
   const [subTasks, setSubTasks] = useState(generateTasks("Sub"));
   const [subSubTasks, setSubSubTasks] = useState(generateTasks("Sub-sub"));
@@ -195,11 +201,11 @@ const Tasks = (props: FormStepProps) => {
       </Grid>
 
       <Grid container spacing={2} justifyContent="center">
-        <Grid item xs={10}>
+        <Grid item xs={12}>
           <StyledFormFieldDivider />
         </Grid>
-        <Grid item xs={5}>
-          <StyledFormCTAOutlined>
+        <Grid item xs={4}>
+          <StyledFormCTAOutlined type="button" onClick={prevStep}>
             <svg
               width="24"
               height="24"
@@ -218,13 +224,18 @@ const Tasks = (props: FormStepProps) => {
             Previous
           </StyledFormCTAOutlined>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={4} textAlign="center" alignItems="center">
+          <Button type="button" onClick={nextStep}>
+            skip
+          </Button>
+        </Grid>
+        <Grid item xs={4}>
           <div
             style={{
               textAlign: "right",
             }}
           >
-            <StyledFormCTA type="submit">
+            <StyledFormCTA type="button" onClick={nextStep}>
               Next
               <svg
                 width="24"

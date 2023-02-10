@@ -20,6 +20,7 @@ export type FormStepProps = {
   activeStep: number;
   nextStep: () => void;
   updateForm: (values: any) => void;
+  prevStep: () => void;
 };
 
 const Conditions = ({ activeStep, nextStep, updateForm }: FormStepProps) => {

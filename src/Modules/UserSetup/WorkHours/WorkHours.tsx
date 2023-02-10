@@ -1,4 +1,4 @@
-import { Grid, TextField, Switch, MenuItem } from "@mui/material";
+import { Grid, TextField, Switch, MenuItem, Button } from "@mui/material";
 import CustomInputLabel from "components/CustomInputLabel";
 
 import { useForm, Controller } from "react-hook-form";
@@ -21,6 +21,7 @@ export type FormStepProps = {
   activeStep: number;
   nextStep: () => void;
   updateForm: (values: any) => void;
+  prevStep: () => void;
 };
 
 const WorkHours = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
@@ -245,12 +246,43 @@ const WorkHours = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                 </Grid>
               </Grid>
             </StyledLeaveDaysWrapper>
+          </Grid>
+          <StyledFormFieldDivider />
 
-            <StyledFormFieldDivider />
-
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <StyledFormCTAOutlined>
+          <Grid container spacing={2} xs={10}>
+            <Grid item xs={4}>
+              <StyledFormCTAOutlined>
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M15 18L9 12L15 6"
+                    stroke="#0052CC"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Previous
+              </StyledFormCTAOutlined>
+            </Grid>
+            <Grid item xs={4} textAlign="center" alignItems="center">
+              <Button type="button" onClick={nextStep}>
+                skip
+              </Button>
+            </Grid>
+            <Grid item xs={4}>
+              <div
+                style={{
+                  textAlign: "right",
+                }}
+              >
+                <StyledFormCTA type="submit">
+                  Next
                   <svg
                     width="24"
                     height="24"
@@ -259,42 +291,15 @@ const WorkHours = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M15 18L9 12L15 6"
-                      stroke="#0052CC"
+                      d="M9 6L15 12L9 18"
+                      stroke="white"
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
-                  Previous
-                </StyledFormCTAOutlined>
-              </Grid>
-              <Grid item xs={6}>
-                <div
-                  style={{
-                    textAlign: "right",
-                  }}
-                >
-                  <StyledFormCTA type="submit">
-                    Next
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M9 6L15 12L9 18"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </StyledFormCTA>
-                </div>
-              </Grid>
+                </StyledFormCTA>
+              </div>
             </Grid>
           </Grid>
         </Grid>

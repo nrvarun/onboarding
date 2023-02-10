@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 
 import React from "react";
 import { useFieldArray, useForm } from "react-hook-form";
@@ -16,6 +16,7 @@ export type FormStepProps = {
   activeStep: number;
   nextStep: () => void;
   updateForm: (values: any) => void;
+  prevStep: () => void;
 };
 
 type FormValues = {
@@ -90,7 +91,7 @@ const Holidays = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
         <StyledFormFieldDivider />
 
         <Grid container spacing={2}>
-          <Grid item xs={6}>
+          <Grid item xs={4}>
             <StyledFormCTAOutlined>
               <svg
                 width="24"
@@ -110,7 +111,12 @@ const Holidays = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
               Previous
             </StyledFormCTAOutlined>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={4} textAlign="center" alignItems="center">
+            <Button type="button" onClick={nextStep}>
+              skip
+            </Button>
+          </Grid>
+          <Grid item xs={4}>
             <div
               style={{
                 textAlign: "right",

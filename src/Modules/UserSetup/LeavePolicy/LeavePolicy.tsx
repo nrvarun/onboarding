@@ -1,5 +1,6 @@
 import { CheckBox, CheckCircle } from "@mui/icons-material";
 import {
+  Button,
   Checkbox,
   FormControl,
   FormControlLabel,
@@ -11,7 +12,6 @@ import {
   Switch,
   TextField,
 } from "@mui/material";
-import CustomInputLabel from "components/CustomInputLabel";
 
 import { useForm, Controller } from "react-hook-form";
 import { StyledFormCTAOutlined } from "Styles/Global";
@@ -31,6 +31,7 @@ export type FormStepProps = {
   activeStep: number;
   nextStep: () => void;
   updateForm: (values: any) => void;
+  prevStep: () => void;
 };
 
 const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
@@ -245,7 +246,7 @@ const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
             <StyledFormFieldDivider />
 
             <Grid container spacing={2}>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <StyledFormCTAOutlined>
                   <svg
                     width="24"
@@ -265,7 +266,12 @@ const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                   Previous
                 </StyledFormCTAOutlined>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={4} textAlign="center" alignItems="center">
+                <Button type="button" onClick={nextStep}>
+                  skip
+                </Button>
+              </Grid>
+              <Grid item xs={4}>
                 <div
                   style={{
                     textAlign: "right",
