@@ -17,6 +17,20 @@ export const HIKI_THEME = createTheme({
           },
         },
       },
+      MuiSwitch: {
+        styleOverrides: {
+          root: {
+            width: 60,
+            height: 44,
+          },
+          switchBase: {
+            top: 3
+          },
+          track: {
+            borderRadius: 10
+          }
+        }
+      },
       MuiInputBase: {
           styleOverrides: {
               // Name of the slot
