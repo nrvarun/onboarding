@@ -1,5 +1,5 @@
 import "@fontsource/mulish";
-import "./index.css";
+import "./index.scss";
 
 import { Routes, Route } from "react-router-dom";
 

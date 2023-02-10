@@ -1,4 +1,3 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
 
 import App from "./App";
@@ -18,16 +17,14 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <React.StrictMode>
-    <ThemeProvider theme={HIKI_THEME}>
-      <CssBaseline />
-      <BrowserRouter>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <App />
-        </LocalizationProvider>
-      </BrowserRouter>
-    </ThemeProvider>
-  </React.StrictMode>
+  <ThemeProvider theme={HIKI_THEME}>
+    <CssBaseline />
+    <BrowserRouter>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <App />
+      </LocalizationProvider>
+    </BrowserRouter>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

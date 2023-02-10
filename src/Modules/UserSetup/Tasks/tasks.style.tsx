@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import { StyledFormCTA } from "Styles/Global";
 
-export const StyledTasksList = styled.ul`
-  padding: 0;
-  margin: 16px 0 0 0;
-  list-style: none;
-  background: #f8fcff;
-  padding: 12px 8px;
+export const StyledTasksListWrapper = styled.div`
+  ul {
+    padding: 0;
+    margin: 16px 0 0 0;
+    list-style: none;
+    background: #f8fcff;
+    padding: 12px 8px;
 
-  li {
-    margin: 0 0 12px 0;
+    li {
+      margin: 0 0 12px 0;
+    }
   }
 `;
 

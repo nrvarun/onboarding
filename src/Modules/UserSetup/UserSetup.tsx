@@ -29,7 +29,7 @@ const steps = [
 ];
 
 const UserSetup = (props: Props) => {
-  const [formStep, setFormStep] = useState(4);
+  const [formStep, setFormStep] = useState(0);
 
   const [formValues, setFormValues] = useState({});
 
@@ -92,9 +92,18 @@ const UserSetup = (props: Props) => {
       <Container>
         <StyledUserSetupWrapper>
           <StyledUserSetupContent>
-            <Stepper alternativeLabel activeStep={formStep}>
-              {steps.map((label) => (
-                <Step key={label}>
+            <Stepper
+              className="custom-stepper"
+              alternativeLabel
+              activeStep={formStep}
+            >
+              {steps.map((label, index) => (
+                <Step
+                  key={label}
+                  className={
+                    index + 1 === formStep ? "custom-current-step" : ""
+                  }
+                >
                   <StepLabel>{label}</StepLabel>
                 </Step>
               ))}
