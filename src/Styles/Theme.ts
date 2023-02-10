@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 
 import type {} from '@mui/x-date-pickers/themeAugmentation';
+import { transform } from "typescript";
   
 export const HIKI_THEME = createTheme({
     typography: {
@@ -20,14 +21,27 @@ export const HIKI_THEME = createTheme({
       MuiSwitch: {
         styleOverrides: {
           root: {
-            width: 60,
-            height: 44,
+            width: 62,
+            height: 42,
+            padding: 9
+          },
+          colorPrimary: {
+            "&.Mui-checked": {
+              // Controls checked color for the thumb
+              color: "#ffffff",
+              transform: 'translateX(20px)'
+            }
           },
           switchBase: {
-            top: 3
+            top: 1,
+            left: 2
           },
           track: {
-            borderRadius: 10
+            borderRadius: 12,
+            ".Mui-checked.Mui-checked + &": {
+              opacity: 1,
+              backgroundColor: "#0052CC"
+            }
           }
         }
       },
