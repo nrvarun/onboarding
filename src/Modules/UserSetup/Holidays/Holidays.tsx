@@ -28,7 +28,12 @@ type FormValues = {
   }[];
 };
 
-const Holidays = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
+const Holidays = ({
+  activeStep,
+  nextStep,
+  updateForm,
+  prevStep,
+}: FormStepProps) => {
   const { control, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       holiday: [{ date: "", name: "", isMandatory: false, isOptional: false }],
@@ -92,7 +97,7 @@ const Holidays = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
         <Grid container spacing={2}>
           <Grid item xs={4}>
-            <StyledFormCTAOutlined>
+            <StyledFormCTAOutlined type="button" onClick={prevStep}>
               <svg
                 width="24"
                 height="24"

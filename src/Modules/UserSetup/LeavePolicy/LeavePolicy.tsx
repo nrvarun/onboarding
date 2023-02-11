@@ -34,11 +34,13 @@ export type FormStepProps = {
   prevStep: () => void;
 };
 
-const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
+const LeavePolicy = ({ prevStep, nextStep, updateForm }: FormStepProps) => {
   const {
     handleSubmit,
     control,
     formState: { errors },
+    watch,
+    getValues,
     reset,
   } = useForm({
     defaultValues: {
@@ -52,6 +54,10 @@ const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
     mode: "all",
   });
 
+  const paidLeavesEnabled = watch("paidLeavesEnabled");
+  const sickLeavesEnabled = watch("paidLeavesEnabled");
+  const lossOfPayLeavesEnabled = watch("paidLeavesEnabled");
+
   const onSubmit = (values: any) => {
     updateForm(values);
     nextStep();
@@ -63,7 +69,7 @@ const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
         <Grid container alignItems="center" justifyContent="center">
           <Grid item xs={10}>
             <StyledWorkHoursWrapper>
-              <StyledWorkHoursHeading>Leave Policy</StyledWorkHoursHeading>
+              <StyledWorkHoursHeading>Leaves</StyledWorkHoursHeading>
               <Grid
                 container
                 alignItems={"center"}
@@ -95,12 +101,13 @@ const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                   <Controller
                     name="maxPDLeaves"
                     control={control}
-                    rules={{ required: true }}
+                    rules={{ required: paidLeavesEnabled }}
                     render={({ field, fieldState }) => (
                       <TextField
                         style={{
                           width: "100%",
                         }}
+                        disabled={!paidLeavesEnabled}
                         select
                         error={fieldState.isDirty && field.value === ""}
                         helperText={
@@ -154,12 +161,13 @@ const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                   <Controller
                     name="sickLeaves"
                     control={control}
-                    rules={{ required: true }}
+                    rules={{ required: sickLeavesEnabled }}
                     render={({ field, fieldState }) => (
                       <TextField
                         style={{
                           width: "100%",
                         }}
+                        disabled={!sickLeavesEnabled}
                         select
                         error={fieldState.isDirty && field.value === ""}
                         helperText={
@@ -215,12 +223,13 @@ const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                   <Controller
                     name="lossOfPayLeaves"
                     control={control}
-                    rules={{ required: true }}
+                    rules={{ required: lossOfPayLeavesEnabled }}
                     render={({ field, fieldState }) => (
                       <TextField
                         style={{
                           width: "100%",
                         }}
+                        disabled={!lossOfPayLeavesEnabled}
                         select
                         error={fieldState.isDirty && field.value === ""}
                         helperText={
@@ -247,7 +256,7 @@ const LeavePolicy = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
             <Grid container spacing={2}>
               <Grid item xs={4}>
-                <StyledFormCTAOutlined>
+                <StyledFormCTAOutlined type="button" onClick={prevStep}>
                   <svg
                     width="24"
                     height="24"

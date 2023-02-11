@@ -2,8 +2,10 @@ import {
   Divider,
   FormControlLabel,
   Grid,
+  MenuItem,
   Radio,
   RadioGroup,
+  Select,
   TextField,
 } from "@mui/material";
 import { StyledCustomInputLabel } from "components/CustomInputLabel/custominputlabel.style";
@@ -24,7 +26,25 @@ export type FormStepProps = {
   prevStep: () => void;
 };
 
-const Bank = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
+const BANKS = [
+  {
+    id: 1,
+    label: "HDFC",
+    value: "hdfc",
+  },
+  {
+    id: 2,
+    label: "ICICI",
+    value: "icici",
+  },
+  {
+    id: 3,
+    label: "Indian",
+    value: "Indian",
+  },
+];
+
+const Bank = ({ prevStep, nextStep, updateForm }: FormStepProps) => {
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
       bank: "",
@@ -57,6 +77,8 @@ const Bank = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                   <>
                     <StyledCustomInputLabel>Bank*</StyledCustomInputLabel>
                     <TextField
+                      select
+                      fullWidth
                       style={{
                         width: "100%",
                       }}
@@ -64,7 +86,13 @@ const Bank = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
                       error={fieldState.error ? true : false}
                       placeholder="Select Bank"
                       {...field}
-                    />
+                    >
+                      {BANKS.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                          {option.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
                   </>
                 )}
               />
@@ -195,7 +223,7 @@ const Bank = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <StyledFormCTAOutlined>
+                <StyledFormCTAOutlined type="button" onClick={prevStep}>
                   <svg
                     width="24"
                     height="24"

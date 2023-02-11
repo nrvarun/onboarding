@@ -23,7 +23,7 @@ export type FormStepProps = {
   prevStep: () => void;
 };
 
-const Conditions = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
+const Conditions = ({ prevStep, nextStep, updateForm }: FormStepProps) => {
   const {
     handleSubmit,
     control,
@@ -92,7 +92,7 @@ const Conditions = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <StyledFormCTAOutlined>
+                <StyledFormCTAOutlined type="button" onClick={prevStep}>
                   <svg
                     width="24"
                     height="24"

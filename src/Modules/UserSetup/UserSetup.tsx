@@ -29,7 +29,7 @@ const steps = [
 ];
 
 const UserSetup = (props: Props) => {
-  const [formStep, setFormStep] = useState(0);
+  const [formStep, setFormStep] = useState(6);
 
   const [formValues, setFormValues] = useState({});
 

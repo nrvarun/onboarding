@@ -24,7 +24,7 @@ export type FormStepProps = {
   prevStep: () => void;
 };
 
-const WorkHours = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
+const WorkHours = ({ prevStep, nextStep, updateForm }: FormStepProps) => {
   const {
     handleSubmit,
     control,
@@ -251,7 +251,7 @@ const WorkHours = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
           <Grid container spacing={2} xs={10}>
             <Grid item xs={4}>
-              <StyledFormCTAOutlined>
+              <StyledFormCTAOutlined type="button" onClick={prevStep}>
                 <svg
                   width="24"
                   height="24"

@@ -22,7 +22,7 @@ export type FormStepProps = {
   prevStep: () => void;
 };
 
-const Invoice = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
+const Invoice = ({ prevStep, nextStep, updateForm }: FormStepProps) => {
   const { handleSubmit, control, reset } = useForm({
     defaultValues: {
       invoiceTemplate: "template1",
@@ -121,7 +121,7 @@ const Invoice = ({ activeStep, nextStep, updateForm }: FormStepProps) => {
 
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <StyledFormCTAOutlined>
+                <StyledFormCTAOutlined type="button" onClick={prevStep}>
                   <svg
                     width="24"
                     height="24"
