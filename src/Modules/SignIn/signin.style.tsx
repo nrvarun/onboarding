@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const StyledForgotPasswordLink = styled.a`
+export const StyledForgotPasswordLink = styled.div`
   margin: 0 0 3rem 0;
-  display: block;
+  display: inline-block;
   font-family: "Mulish", sans-serif;
+  text-align: right;
 
   p {
     font-size: 12px;

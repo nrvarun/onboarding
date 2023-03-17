@@ -15,6 +15,7 @@ import {
 } from "Styles/Global";
 import { StyledForgotPasswordLink } from "./signin.style";
 import { FormEvent, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 
 type Props = {};
 
@@ -29,82 +30,90 @@ const SignIn = (props: Props) => {
     event.preventDefault();
   };
 
-  const handleSubmit = (ev: FormEvent) => {
-    ev.preventDefault();
-  };
-
-  const [formInput, setFormInput] = useState({
-    username: "",
-    password: "",
+  const { handleSubmit, control, reset } = useForm({
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+    mode: "all",
   });
+
+  const onSubmit = (values: any) => {
+    console.log("signin form submit");
+  };
 
   return (
     <AuthLayout title="Login to Hiki Account">
-      <form name="login" onSubmit={handleSubmit}>
+      <form name="login" onSubmit={handleSubmit(onSubmit)}>
         <StyledFormField>
-          <CustomInputLabel text="Username *" />
-          <TextField
-            id="username"
-            label=""
-            required
-            aria-required
-            fullWidth
+          <Controller
             name="username"
-            placeholder="Type username..."
-            value={formInput.username}
-            variant="outlined"
-            onChange={(ev) =>
-              setFormInput((state) => {
-                return {
-                  ...state,
-                  username: ev.target.value,
-                };
-              })
-            }
+            control={control}
+            rules={{ required: true }}
+            render={({ field, fieldState }) => (
+              <>
+                <CustomInputLabel text="Username *" />
+                <TextField
+                  fullWidth
+                  style={{
+                    width: "100%",
+                  }}
+                  helperText={fieldState.error && "Username is required"}
+                  error={fieldState.error ? true : false}
+                  placeholder="Select Bank"
+                  {...field}
+                ></TextField>
+              </>
+            )}
           />
         </StyledFormField>
         <StyledFormField>
-          <CustomInputLabel text="Password *" />
-          <TextField
-            id="password"
-            type={showPassword ? "text" : "password"}
+          <Controller
             name="password"
-            label=""
-            required
-            aria-required
-            fullWidth
-            placeholder="Type password..."
-            variant="outlined"
-            value={formInput.password}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            onChange={(ev) =>
-              setFormInput((state) => {
-                return {
-                  ...state,
-                  password: ev.target.value,
-                };
-              })
-            }
+            control={control}
+            rules={{ required: true }}
+            render={({ field, fieldState }) => (
+              <>
+                <CustomInputLabel text="Password *" />
+                <TextField
+                  type={showPassword ? "text" : "password"}
+                  label=""
+                  fullWidth
+                  placeholder="Type password..."
+                  variant="outlined"
+                  {...field}
+                  helperText={fieldState.error && "Password is required"}
+                  error={fieldState.error ? true : false}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </>
+            )}
           />
         </StyledFormField>
-        <StyledForgotPasswordLink>
-          <Link to="/forgot-password">
-            <p>Forgot password</p>
-          </Link>
-        </StyledForgotPasswordLink>
+        <div
+          style={{
+            textAlign: "right",
+          }}
+        >
+          <StyledForgotPasswordLink>
+            <Link to="/forgot-password">
+              <p>Forgot password</p>
+            </Link>
+          </StyledForgotPasswordLink>
+        </div>
 
         <StyledFormCTA fullWidth type="submit">
           Login
